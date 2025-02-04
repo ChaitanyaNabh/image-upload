@@ -32,6 +32,8 @@
             width: 100%;
             max-width: 150px;
             border-radius: 10px;
+            cursor: pointer;
+            display: none;
         }
         .form-section textarea {
             width: 100%;
@@ -39,18 +41,9 @@
             border: 1px solid #ccc;
             border-radius: 5px;
         }
-        .view-btn {
-            margin-top: 10px;
-            padding: 5px 10px;
-            background: #28a745;
-            color: white;
-            border: none;
-            border-radius: 5px;
+        .camera-icon {
+            font-size: 40px;
             cursor: pointer;
-            font-size: 14px;
-        }
-        .view-btn:hover {
-            background: #218838;
         }
         .submit-btn {
             display: block;
@@ -67,6 +60,25 @@
             background: #0056b3;
         }
     </style>
+    <script>
+        function captureImage(inputId, imgId) {
+            const input = document.getElementById(inputId);
+            input.click();
+        }
+
+        function previewImage(input, imgId) {
+            const file = input.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    const imgElement = document.getElementById(imgId);
+                    imgElement.src = e.target.result;
+                    imgElement.style.display = 'block';
+                }
+                reader.readAsDataURL(file);
+            }
+        }
+    </script>
 </head>
 <body>
     <div class="form-container">
@@ -74,42 +86,47 @@
         
         <form>
             <div class="form-section">
-                <img src="image1.jpg" alt="Description 1">
+                <input type="file" id="file1" accept="image/*" capture="environment" style="display:none;" onchange="previewImage(this, 'img1')">
+                <span class="camera-icon" onclick="captureImage('file1', 'img1')">📷</span>
+                <img id="img1" onclick="window.open(this.src, '_blank')">
                 <div>
                     <textarea placeholder="Enter description for Image 1"></textarea>
-                    <button type="button" class="view-btn" onclick="window.open('image1.jpg', '_blank')">View Image</button>
                 </div>
             </div>
             
             <div class="form-section">
-                <img src="image2.jpg" alt="Description 2">
+                <input type="file" id="file2" accept="image/*" capture="environment" style="display:none;" onchange="previewImage(this, 'img2')">
+                <span class="camera-icon" onclick="captureImage('file2', 'img2')">📷</span>
+                <img id="img2" onclick="window.open(this.src, '_blank')">
                 <div>
                     <textarea placeholder="Enter description for Image 2"></textarea>
-                    <button type="button" class="view-btn" onclick="window.open('image2.jpg', '_blank')">View Image</button>
                 </div>
             </div>
             
             <div class="form-section">
-                <img src="image3.jpg" alt="Description 3">
+                <input type="file" id="file3" accept="image/*" capture="environment" style="display:none;" onchange="previewImage(this, 'img3')">
+                <span class="camera-icon" onclick="captureImage('file3', 'img3')">📷</span>
+                <img id="img3" onclick="window.open(this.src, '_blank')">
                 <div>
                     <textarea placeholder="Enter description for Image 3"></textarea>
-                    <button type="button" class="view-btn" onclick="window.open('image3.jpg', '_blank')">View Image</button>
                 </div>
             </div>
             
             <div class="form-section">
-                <img src="image4.jpg" alt="Description 4">
+                <input type="file" id="file4" accept="image/*" capture="environment" style="display:none;" onchange="previewImage(this, 'img4')">
+                <span class="camera-icon" onclick="captureImage('file4', 'img4')">📷</span>
+                <img id="img4" onclick="window.open(this.src, '_blank')">
                 <div>
                     <textarea placeholder="Enter description for Image 4"></textarea>
-                    <button type="button" class="view-btn" onclick="window.open('image4.jpg', '_blank')">View Image</button>
                 </div>
             </div>
             
             <div class="form-section">
-                <img src="image5.jpg" alt="Description 5">
+                <input type="file" id="file5" accept="image/*" capture="environment" style="display:none;" onchange="previewImage(this, 'img5')">
+                <span class="camera-icon" onclick="captureImage('file5', 'img5')">📷</span>
+                <img id="img5" onclick="window.open(this.src, '_blank')">
                 <div>
                     <textarea placeholder="Enter description for Image 5"></textarea>
-                    <button type="button" class="view-btn" onclick="window.open('image5.jpg', '_blank')">View Image</button>
                 </div>
             </div>
             
